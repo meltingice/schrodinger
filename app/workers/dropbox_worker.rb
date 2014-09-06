@@ -8,6 +8,6 @@ class DropboxWorker
 
   def perform(user_id)
     user = User.find(user_id)
-    DropboxTree.service_for(user).fetch!
+    DropboxTreeService.new(user).update!
   end
 end
