@@ -1,0 +1,7 @@
+<h1>Hello, world!</h1>
+
+<% if current_user %>
+  <p>Welcome <%= current_user.name %>!</p>
+<% else %>
+  <a href="/auth/dropbox_oauth2">Log in</a>
+<% end %>
