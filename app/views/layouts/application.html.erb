@@ -8,13 +8,17 @@
 
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "application", debug: (Rails.env.development? || Rails.env.test?) %>
-  <%= javascript_include_tag "vendor/modernizr" %>
   <%= render partial: 'layouts/fonts' %>
+
+  <%= javascript_include_tag "vendor/modernizr" %>
 </head>
 <body>
 
 <%= render partial: 'layouts/header' %>
 <%= yield %>
+
 <%= javascript_include_tag "application" %>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<%= javascript_include_tag "internal" if current_user.present? %>
 </body>
 </html>
