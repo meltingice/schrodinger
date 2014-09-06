@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906150930) do
+ActiveRecord::Schema.define(version: 20140906170224) do
 
   create_table "nodes", force: true do |t|
     t.integer  "dropbox_id"
@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(version: 20140906150930) do
     t.string   "filetype"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "dropbox_hash"
   end
 
   add_index "nodes", ["ancestry"], name: "index_nodes_on_ancestry", using: :btree
+  add_index "nodes", ["filetype"], name: "index_nodes_on_filetype", using: :btree
 
   create_table "users", id: false, force: true do |t|
     t.integer  "dropbox_id"

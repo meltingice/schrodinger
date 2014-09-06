@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   def name
     account['name']
   end
+
+  def node_root
+    Node.roots.where(dropbox_id: id).first
+  end
 end
