@@ -4,6 +4,7 @@ class BasePresenter
   end
 
   attr_reader :object
+  delegate :current_user, to: :h
 
   def initialize(object, template)
     @object = object
