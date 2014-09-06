@@ -49,7 +49,8 @@ class DropboxTreeService
   end
 
   def remove_node(path)
-    @root.child_at_path(path).destroy
+    node = @root.child_at_path(path)
+    node.destroy if node.present?
   end
 
   def process(path, metadata)
