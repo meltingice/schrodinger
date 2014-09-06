@@ -1,0 +1,8 @@
+---
+:concurrency: 2
+production:
+  :queues:
+    - [production, 1]
+development:
+  :queues:
+    - [development, 1]

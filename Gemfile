@@ -12,6 +12,8 @@ gem 'mysql2'
 gem 'omniauth'
 gem 'omniauth-dropbox-oauth2'
 gem 'sass-rails', '~> 4.0.0'
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil
 gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
