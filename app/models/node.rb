@@ -8,4 +8,8 @@ class Node < ActiveRecord::Base
   def folders
     children.where(filetype: nil)
   end
+
+  def deep_size
+    descendants.pluck(:size).inject(0) { |sum, size| sum + size }
+  end
 end
