@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
     user.access_token = auth['credentials']['token']
     user.account = auth['info'].to_h
+    user.account['quota'] = auth['extra']['raw_info']['quota_info'].to_h
     user.save!
     user
   end

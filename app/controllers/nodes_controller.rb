@@ -1,6 +1,5 @@
 class NodesController < ApplicationController
-  def update
-    service = DropboxTree.service_for(current_user)
-    service.fetch!
+  def contents_for_path
+    render partial: 'nodes/contents_for_path'
   end
 end

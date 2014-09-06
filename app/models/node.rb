@@ -3,6 +3,9 @@ class Node < ActiveRecord::Base
 
   include FileFormats
 
+  scope :files, -> { where('filetype IS NOT NULL') }
+  scope :folders, -> { where(filetype: nil) }
+
   def child_at_path(path)
     descendants.where(dropbox_path: path).first
   end
@@ -38,14 +41,6 @@ class Node < ActiveRecord::Base
 
   def folder?
     filetype.nil?
-  end
-
-  def files
-    children.where('filetype IS NOT NULL')
-  end
-
-  def folders
-    children.where(filetype: nil)
   end
 
   def deep_size
