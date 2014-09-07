@@ -16,7 +16,7 @@ class State
     $target = $(e.target)
     $target = $target.closest('.directory-item') unless $target.hasClass('directory-item')
     return if $target.hasClass('file')
-    
+
     @setNewState $target
 
   onBreadcrumbClick: (e) =>
@@ -32,9 +32,8 @@ class State
     .join('/')
 
   loadNewState: ->
-    @loadBreadcrumbs()
-    @loadSidebar()
-    @loadFileList()
+    $.when(@loadBreadcrumbs(), @loadSidebar(), @loadFileList()).then ->
+      
 
   loadBreadcrumbs: ->
     $.get("/nodes/breadcrumbs", path: @currentPath()).then (html) =>

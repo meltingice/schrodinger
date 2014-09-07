@@ -24,4 +24,10 @@ class NodePresenter < BasePresenter
   def usage_width
     (node.deep_size.to_f / node.parent.deep_size) * 100
   end
+
+  def stats_tip
+    %{
+      These stats include all content in this folder, including subfolders.
+    }.strip
+  end
 end

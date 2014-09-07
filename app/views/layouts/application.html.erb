@@ -8,9 +8,11 @@
 
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "application", debug: (Rails.env.development? || Rails.env.test?) %>
+  <%= stylesheet_link_tag "pace" %>
   <%= render partial: 'layouts/fonts' %>
 
   <%= javascript_include_tag "vendor/modernizr" %>
+  <%= javascript_include_tag "pace" %>
 </head>
 <body>
 
