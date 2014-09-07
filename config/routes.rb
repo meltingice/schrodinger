@@ -10,6 +10,7 @@ DropboxAnalytics::Application.routes.draw do
   resources :nodes do
     collection do
       get 'contents_for_path'
+      get 'stats'
     end
   end
 end
