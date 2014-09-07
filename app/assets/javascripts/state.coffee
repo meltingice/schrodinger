@@ -1,7 +1,11 @@
 class State
+  lastUpdate: null
+
   constructor: ->
     @bindClicks()
     @loadGraph()
+    @startPoller()
+
     window.onpopstate = @loadNewState
 
     @xhrPool = []
@@ -36,6 +40,16 @@ class State
 
   onBreadcrumbClick: (e) =>
     @setNewState $(e.target)
+
+  startPoller: =>
+    $.get('/user.json').then (data) =>
+      if not @lastUpdate?
+        @lastUpdate = data.last_checked_at
+      else if data.last_checked_at > @lastUpdate
+        @loadNewState()
+
+      @lastUpdate = data.last_checked_at
+      setTimeout @startPoller, 2000
 
   setNewState: ($ele) ->
     window.history.pushState({}, 'Schrodinger', "/stats/#{@encodePath($ele.data('path'))}")
