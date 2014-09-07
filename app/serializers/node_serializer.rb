@@ -1,18 +1,11 @@
-class NodeSerializer < NodeNoAssociationSerializer
-  attributes :category_stats
+class NodeSerializer < BaseSerializer
+  attributes :name, :path, :size, :filetype, :category_stats
 
-  # has_many :files,    serializer: NodeNoAssociationSerializer
-  # has_many :folders,  serializer: NodeNoAssociationSerializer
+  def path
+    object.dropbox_path
+  end
 
   def category_stats
     object.deep_categories_with_size
-  end
-
-  def files
-    object.children.files
-  end
-
-  def folders
-    object.children.folders
   end
 end

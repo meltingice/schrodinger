@@ -1,3 +1,5 @@
+# Asynchronously runs the tree processing that pulls from
+# Dropbox and updates our local state.
 class DropboxWorker
   include Sidekiq::Worker
   sidekiq_options queue: Rails.env.to_s

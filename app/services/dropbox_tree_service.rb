@@ -66,17 +66,26 @@ class DropboxTreeService
     @root.children.each(&:destroy)
   end
 
+  # [<path>, null] - Indicates that there is no file/folder at the given path.
+  # To update your local state to match, anything at path and all its children 
+  # should be deleted. Deleting a folder in your Dropbox will sometimes send down 
+  # a single deleted entry for that folder, and sometimes separate entries for the 
+  # folder and all child paths. If your local state doesn't have anything at path, 
+  # ignore this entry.
   def remove_node(path)
     node = @root.child_at_path(path)
     node.destroy if node.present?
   end
 
+  # Delta response has metadata
   def process(path, metadata)
     existing_node = @root.child_at_path(path)
     if existing_node.present?
       return process_existing_node(existing_node, metadata)
     end
 
+    # If the new entry includes parent folders that don't yet exist in your local state, 
+    # create those parent folders in your local state.
     parent = @root.mkdir_p(parent_path_for(path))
 
     Node.create!({
@@ -89,6 +98,9 @@ class DropboxTreeService
     })
   end
 
+  # We determine file/folder based on the filetype returned with the metadata. If it's
+  # nil, then we know it's a folder. No need to check what time already exists, just
+  # overwrite it.
   def process_existing_node(node, metadata)
     node.update_attributes({
       size: metadata['size'],
