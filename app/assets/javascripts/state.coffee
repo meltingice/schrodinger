@@ -2,6 +2,7 @@ class State
   constructor: ->
     @bindClicks()
     @loadGraph()
+    window.onpopstate = @loadNewState
 
   bindClicks: ->
     $('body').on 'click', '.directory-item', @onFileClick
@@ -23,7 +24,7 @@ class State
     @setNewState $(e.target)
 
   setNewState: ($ele) ->
-    window.history.replaceState({}, 'Schrodinger', "/stats/#{@encodePath($ele.data('path'))}")
+    window.history.pushState({}, 'Schrodinger', "/stats/#{@encodePath($ele.data('path'))}")
     @loadNewState()
 
   encodePath: (path) ->
@@ -31,7 +32,7 @@ class State
       encodeURIComponent(p)
     .join('/')
 
-  loadNewState: ->
+  loadNewState: =>
     $.when(@loadBreadcrumbs(), @loadSidebar(), @loadFileList()).then ->
       $(document).foundation()
 
