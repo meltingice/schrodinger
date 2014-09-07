@@ -7,5 +7,7 @@ class DropboxController < ApplicationController
     params[:delta][:users].each do |user_id|
       DropboxWorker.perform_async(user_id)
     end
+
+    render text: 'OK'
   end
 end
