@@ -1,26 +1,26 @@
 <% cache [current_node] do %>
-<div id="FileList" class="large-8 columns">
-  <% unless current_node.root? %>
-    <%= content_tag(:div, {
-      class: ['row', 'directory-item'],
-      data: {
-        path: current_node.parent.dropbox_path
-      }
-    }) do %>
-      <div class="small-1 columns filetype-icon">
-        <img src="/assets/back.png">
-      </div>
-      <div class="small-11 columns file-name">
-        <span>Back</span>
-      </div>
+  <div id="FileList" class="large-8 columns">
+    <% unless current_node.root? %>
+      <%= content_tag(:div, {
+        class: ['row', 'directory-item'],
+        data: {
+          path: current_node.parent.dropbox_path
+        }
+      }) do %>
+        <div class="small-1 columns filetype-icon">
+          <img src="/assets/back.png">
+        </div>
+        <div class="small-11 columns file-name">
+          <span>Back</span>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <% current_node.folders.each do |folder| %>
-    <%= render partial: 'nodes/folder', locals: { node: folder } %>
-  <% end %>
-  <% current_node.files.each do |file| %>
-    <%= render partial: 'nodes/file', locals: { node: file } %>
-  <% end %>
-</div>
+    <% current_node.folders.each do |folder| %>
+      <%= render partial: 'nodes/folder', locals: { node: folder } %>
+    <% end %>
+    <% current_node.files.each do |file| %>
+      <%= render partial: 'nodes/file', locals: { node: file } %>
+    <% end %>
+  </div>
 <% end %>

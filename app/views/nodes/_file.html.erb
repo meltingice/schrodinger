@@ -1,21 +1,23 @@
-<% present(node) do |node_presenter| %>
-  <%= content_tag(:div, {
-    class: ['row', 'directory-item', 'file'],
-    data: {
-      path: node.dropbox_path
-    }
-  }) do %>
-    <div class="columns usage-bar" style="width: <%= node_presenter.usage_width %>%"></div>
-    <div class="small-1 columns filetype-icon">
-      <img src="/assets/file.png">
-    </div>
-    <div class="small-11 columns file-name">
-      <span>
-        <%= node.name %>
+<% cache [node] do %>
+  <% present(node) do |node_presenter| %>
+    <%= content_tag(:div, {
+      class: ['row', 'directory-item', 'file'],
+      data: {
+        path: node.dropbox_path
+      }
+    }) do %>
+      <div class="columns usage-bar" style="width: <%= node_presenter.usage_width %>%"></div>
+      <div class="small-1 columns filetype-icon">
+        <img src="/assets/file.png">
+      </div>
+      <div class="small-11 columns file-name">
         <span>
-          (<%= node_presenter.total_space %>)
+          <%= node.name %>
+          <span>
+            (<%= node_presenter.total_space %>)
+          </span>
         </span>
-      </span>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

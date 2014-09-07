@@ -1,26 +1,28 @@
-<% present(current_node) do |node_presenter| %>
-<div class="row">
-  <div class="large-12 columns">
-    <h4>
-      <span data-tooltip aria-haspopup="true" class="has-tip" title="<%= node_presenter.stats_tip %>">Folder Stats</span>
-    </h4>
-    
-    <div class="row">
-      <div class="small-6 columns">Folders</div>
-      <div class="small-6 columns"><%= node_presenter.folders_count %></div>
-    </div>
-    <div class="row">
-      <div class="small-6 columns">Files</div>
-      <div class="small-6 columns"><%= node_presenter.files_count %></div>
-    </div>
-    <div class="row">
-      <div class="small-6 columns">Size</div>
-      <div class="small-6 columns"><%= node_presenter.total_space %></div>
-    </div>
-    <div class="row">
-      <div class="small-6 columns">Quota Usage</div>
-      <div class="small-6  columns"><%= node_presenter.quota_percentage %></div>
+<% cache [current_node] do %>
+  <% present(current_node) do |node_presenter| %>
+  <div class="row">
+    <div class="large-12 columns">
+      <h4>
+        <span data-tooltip aria-haspopup="true" class="has-tip" title="<%= node_presenter.stats_tip %>">Folder Stats</span>
+      </h4>
+      
+      <div class="row">
+        <div class="small-6 columns">Folders</div>
+        <div class="small-6 columns"><%= node_presenter.folders_count %></div>
+      </div>
+      <div class="row">
+        <div class="small-6 columns">Files</div>
+        <div class="small-6 columns"><%= node_presenter.files_count %></div>
+      </div>
+      <div class="row">
+        <div class="small-6 columns">Size</div>
+        <div class="small-6 columns"><%= node_presenter.total_space %></div>
+      </div>
+      <div class="row">
+        <div class="small-6 columns">Quota Usage</div>
+        <div class="small-6  columns"><%= node_presenter.quota_percentage %></div>
+      </div>
     </div>
   </div>
-</div>
+  <% end %>
 <% end %>
