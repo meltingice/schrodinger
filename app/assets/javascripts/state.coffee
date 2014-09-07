@@ -33,7 +33,7 @@ class State
 
   loadNewState: ->
     $.when(@loadBreadcrumbs(), @loadSidebar(), @loadFileList()).then ->
-      
+      $(document).foundation()
 
   loadBreadcrumbs: ->
     $.get("/nodes/breadcrumbs", path: @currentPath()).then (html) =>
