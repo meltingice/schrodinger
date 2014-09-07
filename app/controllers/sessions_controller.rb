@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
     DropboxWorker.update_for(user)
 
-    redirect_to '/'
+    redirect_to user.account_ready? ? stats_path : wait_path
   end
 
   def destroy
