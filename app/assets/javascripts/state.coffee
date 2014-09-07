@@ -93,4 +93,4 @@ class State
           data: seriesData
         }]
 
-new State()
+$(document).ready -> new State()

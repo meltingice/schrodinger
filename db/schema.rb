@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906202441) do
+ActiveRecord::Schema.define(version: 20140907174857) do
 
   create_table "nodes", force: true do |t|
     t.integer  "dropbox_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140906202441) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "last_cursor"
+    t.boolean  "account_ready", default: false
   end
 
   add_index "users", ["dropbox_id"], name: "index_users_on_dropbox_id", unique: true, using: :btree

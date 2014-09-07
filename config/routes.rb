@@ -5,6 +5,7 @@ DropboxAnalytics::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
+  get 'wait', to: 'stats#wait'
   get 'stats', to: 'stats#index'
   get 'stats/:path', constraints: { path: /.*/ }, to: 'stats#index'
 
@@ -19,4 +20,6 @@ DropboxAnalytics::Application.routes.draw do
       get 'file_list'
     end
   end
+
+  resource :user
 end

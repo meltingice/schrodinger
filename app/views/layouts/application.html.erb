@@ -12,14 +12,11 @@
   <%= render partial: 'layouts/fonts' %>
 
   <%= javascript_include_tag "vendor/modernizr" %>
-  <%= javascript_include_tag "pace" %>
+  <%= javascript_include_tag "application" %>
 </head>
 <body>
 
 <%= yield %>
 
-<%= javascript_include_tag "application" %>
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<%= javascript_include_tag "internal" if current_user.present? %>
 </body>
 </html>
