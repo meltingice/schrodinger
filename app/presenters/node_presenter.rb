@@ -26,6 +26,6 @@ class NodePresenter < BasePresenter
   end
 
   def usage_width
-    (node.deep_size.to_f / node.parent.deep_size) * 100
+    (node.deep_size / node.parent.deep_size.to_f) * 100
   end
 end
