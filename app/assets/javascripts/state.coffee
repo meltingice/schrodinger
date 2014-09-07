@@ -2,19 +2,13 @@ class State
   constructor: ->
     @bindClicks()
 
-  loadCurrent: ->
-    if @currentPath().length is 0
-      @loadNewState()
-    else
-      @loadGraph()
-
   bindClicks: ->
     $('body').on 'click', '.directory-item', @onFileClick
 
   currentPath: ->
     decodeURIComponent(
-      window.location.hash.substring(1, window.location.hash.length)
-    ).replace /^(\/)/, ''
+      window.location.pathname.match(/\/stats\/(.*)/)[1]
+    )
 
   onFileClick: (e) =>
     $target = $(e.target)
@@ -22,8 +16,13 @@ class State
     @setNewState $target
 
   setNewState: ($ele) ->
-    window.location.hash = "##{encodeURIComponent($ele.data('path'))}"
+    window.history.replaceState({}, 'Schrodinger', "/stats/#{@encodePath($ele.data('path'))}")
     @loadNewState()
+
+  encodePath: (path) ->
+    path.split('/').map (p) ->
+      encodeURIComponent(p)
+    .join('/')
 
   loadNewState: ->
     @loadSidebar()
@@ -53,5 +52,4 @@ class State
           data: seriesData
         }]
 
-state = new State()
-state.loadCurrent()
+new State()

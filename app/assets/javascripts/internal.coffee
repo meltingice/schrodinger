@@ -1,2 +1,1 @@
-#= require usage_chart
-
+#= require state

@@ -6,6 +6,7 @@ DropboxAnalytics::Application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get 'stats', to: 'stats#index'
+  get 'stats/:path', constraints: { path: /.*/ }, to: 'stats#index'
 
   resources :nodes do
     collection do
