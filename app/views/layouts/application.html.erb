@@ -7,12 +7,12 @@
   <title><%= content_for?(:title) ? yield(:title) : "Schrodinger" %></title>
 
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag "application", debug: (Rails.env.development? || Rails.env.test?) %>
-  <%= stylesheet_link_tag "pace" if current_user.present? %>
+  <%= stylesheet_link_tag asset_path("application.css"), debug: (Rails.env.development? || Rails.env.test?) %>
+  <%= stylesheet_link_tag asset_path("pace.css") if current_user.present? %>
   <%= render partial: 'layouts/fonts' %>
 
-  <%= javascript_include_tag "vendor/modernizr" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag asset_path("vendor/modernizr.js") %>
+  <%= javascript_include_tag asset_path("application.js") %>
 </head>
 <body>
 
