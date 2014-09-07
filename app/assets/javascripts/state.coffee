@@ -23,7 +23,7 @@ class State
     @xhrPool = []
 
   bindClicks: ->
-    $('body').on 'click', '.directory-item', @onFileClick
+    $('body').on 'click touchstart', '.directory-item', @onFileClick
     $('body').on 'click', '.breadcrumbs a', @onBreadcrumbClick
 
   currentPath: ->
