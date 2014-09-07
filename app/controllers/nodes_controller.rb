@@ -1,4 +1,6 @@
 class NodesController < ApplicationController
+  before_action :require_user
+
   def stats
     render json: current_node
   end

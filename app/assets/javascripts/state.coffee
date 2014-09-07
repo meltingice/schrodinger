@@ -24,7 +24,7 @@ class State
 
   currentPath: ->
     decodeURIComponent(
-      window.location.pathname.match(/\/stats\/(.*)/)[1]
+      window.location.pathname.match(/\/stats\/?(.*)/)[1]
     )
 
   onFileClick: (e) =>

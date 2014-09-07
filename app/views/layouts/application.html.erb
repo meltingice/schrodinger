@@ -8,7 +8,7 @@
 
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "application", debug: (Rails.env.development? || Rails.env.test?) %>
-  <%= stylesheet_link_tag "pace" %>
+  <%= stylesheet_link_tag "pace" if current_user.present? %>
   <%= render partial: 'layouts/fonts' %>
 
   <%= javascript_include_tag "vendor/modernizr" %>

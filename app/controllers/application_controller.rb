@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_node, :root_node
 
+  def require_user
+    return if current_user.present?
+    redirect_to '/'
+  end
+
   def current_user(reload = false)
     @current_user = nil if reload
     @current_user ||= User.where(dropbox_id: session[:dropbox_id]).first
