@@ -27,9 +27,15 @@ class DropboxTreeService
     @api ||= DropboxClient.new(user.access_token)
   end
 
+  # Builds the node tree based on the API delta response.
+  # If the delta response is paginated, it will recursively
+  # call build_structure until all delta entries are processed.
   def build_structure(cursor = nil)
     # def delta(cursor=nil, path_prefix=nil)
     data = api.delta(cursor)
+
+    reset_account! if data['reset']
+
     data['entries'].each do |entry|
       entry[0].gsub!(/^(\/)/, '')
       path, metadata = entry
@@ -50,6 +56,14 @@ class DropboxTreeService
         account_ready: true
       })
     end
+  end
+
+  # If true, clear your local state before processing the delta entries.
+  # reset is always true on the initial call to /delta (i.e. when no cursor is passed in).
+  # Otherwise, it is true in rare situations, such as after server or account maintenance, 
+  # or if a user deletes their app folder.
+  def reset_account!
+    @root.children.each(&:destroy)
   end
 
   def remove_node(path)
