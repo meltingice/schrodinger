@@ -13,9 +13,7 @@
   <%= javascript_include_tag asset_path("vendor/modernizr.js") %>
   <%= javascript_include_tag asset_path("application.js") %>
 </head>
-<body>
-
-<%= yield %>
-
-</body>
+<%= content_tag(:body, class: body_classes, data: {equalizer: ''}) do %>
+  <%= yield %>
+<% end %>
 </html>

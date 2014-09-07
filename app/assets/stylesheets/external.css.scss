@@ -1,0 +1,52 @@
+@import "global_colors";
+@import "global";
+
+.external {
+  .full-width {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: initial;
+  }
+
+  .dropbox-logo {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    fill: rgba($white, 0.1);
+
+    svg {
+      -webkit-transform: scale(8);
+      transform: scale(8);
+    }
+  }
+
+  #Hero {
+    background-color: $blue;
+
+    .content {
+      @include vertical-align;
+      text-align: center;
+
+      h1 { color: $white; }
+      h3 {
+        color: rgba($white, 0.6);
+        line-height: 1;
+      }
+
+      .button-group {
+        margin-top: 50px;
+
+        .button {
+          background-color: $white;
+          color: $blue;
+          margin: 0 20px;
+
+          &:hover {
+
+          }
+        }
+      }
+    }
+  }
+}

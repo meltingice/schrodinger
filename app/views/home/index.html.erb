@@ -1,7 +1,21 @@
-<h1>Hello, world!</h1>
+<% add_body_class "external" %>
 
-<% if current_user %>
-  <p>Welcome <%= current_user.name %>!</p>
-<% else %>
-  <a href="/auth/dropbox_oauth2">Log in</a>
-<% end %>
+<div class="dropbox-logo">
+  <%= inline_svg 'dropbox.svg' %>
+</div>
+
+<div id="Hero" class="row full-width" data-equalizer-watch>
+  <div class="content">
+    <h1>Schrodinger</h1>
+    <h3>What's in the box?</h3>
+
+    <ul class="button-group">
+      <li><a href="/auth/dropbox_oauth2" class="button radius">Find Out</a></li>
+      <li><a class="button radius">More Info</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <h2>Some other content</h2>
+</div>

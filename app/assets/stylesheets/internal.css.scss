@@ -1,53 +1,55 @@
 @import "global_colors";
 
-#Wait {
-  margin-top: 200px;
-}
-
-.usage-chart {
-  padding-top: 20px;
-}
-
-.directory-item {
-  position: relative;
-  padding: 10px 0;
-  border-bottom: 1px $light-grey solid;
-
-  &:hover {
-    background-color: $lightest-grey;
-    cursor: pointer;
+.internal {
+  #Wait {
+    margin-top: 200px;
   }
 
-  &.file { cursor: default; }
-
-  .usage-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    padding: 0;
-    background-color: rgba($blue, 0.1);
-    height: 100%;
-    transition: width
+  .usage-chart {
+    padding-top: 20px;
   }
 
-  .filetype-icon {
-    width: 8%;
-    padding: 0 0 0 10px;
-    text-align: center;
+  .directory-item {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px $light-grey solid;
 
-    img { height: 20px; }
-  }
+    &:hover {
+      background-color: $lightest-grey;
+      cursor: pointer;
+    }
 
-  .file-name {
-    width: 91%;
-    padding-left: 0;
+    &.file { cursor: default; }
 
-    > span {
-      line-height: 28px;
+    .usage-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      padding: 0;
+      background-color: rgba($blue, 0.1);
+      height: 100%;
+      transition: width
+    }
+
+    .filetype-icon {
+      width: 8%;
+      padding: 0 0 0 10px;
+      text-align: center;
+
+      img { height: 20px; }
+    }
+
+    .file-name {
+      width: 91%;
+      padding-left: 0;
 
       > span {
-        color: $dark-grey;
+        line-height: 28px;
+
+        > span {
+          color: $dark-grey;
+        }
       }
     }
   }
