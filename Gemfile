@@ -26,6 +26,3 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-gem 'capistrano', '~> 2', group: :development
-gem 'debugger', group: [:development, :test]
