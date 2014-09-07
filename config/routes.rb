@@ -8,6 +8,9 @@ DropboxAnalytics::Application.routes.draw do
   get 'stats', to: 'stats#index'
   get 'stats/:path', constraints: { path: /.*/ }, to: 'stats#index'
 
+  get   'dropbox/webhook', to: 'dropbox#verify'
+  post  'dropbox/webhook', to: 'dropbox#webhook'
+
   resources :nodes do
     collection do
       get 'stats'
