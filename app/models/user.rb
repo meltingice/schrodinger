@@ -25,4 +25,5 @@ class User < ActiveRecord::Base
   def node_root
     Node.roots.where(dropbox_id: id).first
   end
+  alias_method :root_node, :node_root
 end
