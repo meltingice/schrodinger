@@ -1,3 +1,2 @@
-unicorn: bundle exec unicorn -p 3000 -c config/unicorn/development.rb > /dev/null 2>&1
-sidekiq: bundle exec sidekiq -C config/sidekiq.yml -e development
-rails: tail -n 0 -f log/development.log
+web: bundle exec unicorn -p $PORT -c ./config/unicorn/$RAILS_ENV.rb
+worker: bundle exec sidekiq -C ./config/sidekiq.yml -e $RAILS_ENV
