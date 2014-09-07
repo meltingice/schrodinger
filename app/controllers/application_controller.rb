@@ -1,9 +1,15 @@
 class ApplicationController < ActionController::Base
+  force_ssl if: :ssl_available?
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception, except: :webhook
 
   helper_method :current_user, :current_node, :root_node
+
+  def ssl_available?
+    Rails.env.production?
+  end
 
   def require_user
     return if current_user.present?
