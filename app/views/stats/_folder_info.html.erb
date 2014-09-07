@@ -1,4 +1,23 @@
+<% present(current_node) do |node_presenter| %>
 <div class="row">
-  <div id="UsageChart" class="large-6 columns">
+  <div class="large-12 columns">
+    <h4>Tree Stats</h4>
+    <div class="row">
+      <div class="small-6 columns">Folders</div>
+      <div class="small-6 columns"><%= node_presenter.folders_count %></div>
+    </div>
+    <div class="row">
+      <div class="small-6 columns">Files</div>
+      <div class="small-6 columns"><%= node_presenter.files_count %></div>
+    </div>
+    <div class="row">
+      <div class="small-6 columns">Size</div>
+      <div class="small-6 columns"><%= node_presenter.total_space %></div>
+    </div>
+    <div class="row">
+      <div class="small-6 columns">Quota Usage</div>
+      <div class="small-6  columns"><%= node_presenter.quota_percentage %></div>
+    </div>
   </div>
 </div>
+<% end %>

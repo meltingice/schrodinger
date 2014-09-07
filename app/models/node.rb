@@ -6,6 +6,14 @@ class Node < ActiveRecord::Base
   scope :files, -> { where('filetype IS NOT NULL') }
   scope :folders, -> { where(filetype: nil) }
 
+  def folders
+    children.folders
+  end
+
+  def files
+    children.files
+  end
+
   def child_at_path(path)
     descendants.where(dropbox_path: path).first
   end

@@ -1,3 +1,40 @@
 @import "global_colors";
-@import "global";
-@import "header";
+
+.directory-item {
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px $light-grey solid;
+
+  &:hover {
+    background-color: $lightest-grey;
+    cursor: pointer;
+  }
+
+  .usage-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    padding: 0;
+    background-color: rgba($blue, 0.1);
+    height: 100%;
+    transition: width
+  }
+
+  .filetype-icon {
+    width: 8%;
+    padding: 0 0 0 10px;
+    text-align: center;
+
+    img { height: 20px; }
+  }
+
+  .file-name {
+    width: 91%;
+    padding-left: 0;
+
+    span {
+      line-height: 28px;
+    }
+  }
+}

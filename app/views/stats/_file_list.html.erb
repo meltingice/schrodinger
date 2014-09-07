@@ -1,0 +1,8 @@
+<div class="large-8 columns">
+  <% current_node.folders.each do |folder| %>
+    <%= render partial: 'nodes/folder', locals: { node: folder } %>
+  <% end %>
+  <% current_node.files.each do |file| %>
+    <%= render partial: 'nodes/file', locals: { node: file } %>
+  <% end %>
+</div>
