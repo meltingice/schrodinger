@@ -58,6 +58,12 @@ class State
       $("#UsageChart").highcharts
         title:
           text: 'Usage by Type'
+        tooltip:
+          formatter: ->
+            return "#{@point.name}: #{@y} bytes" if @y < 1024
+            return "#{@point.name}: #{Math.round(@y / 1024)} KB" if @y < 1048576
+            return "#{@point.name}: #{Math.round(@y / 1048576)} MB" if @y < 1073741824
+            return "#{@point.name}: #{Math.round(@y / 1073741824)} GB"
         series: [{
           type: 'pie'
           name: 'Size'
