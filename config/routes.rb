@@ -11,6 +11,7 @@ DropboxAnalytics::Application.routes.draw do
   resources :nodes do
     collection do
       get 'stats'
+      get 'breadcrumbs'
       get 'sidebar'
       get 'file_list'
     end

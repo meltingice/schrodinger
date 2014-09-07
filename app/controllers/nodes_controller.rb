@@ -3,6 +3,10 @@ class NodesController < ApplicationController
     render json: current_node
   end
 
+  def breadcrumbs
+    render partial: 'stats/breadcrumbs'
+  end
+
   def sidebar
     render partial: 'stats/sidebar'
   end

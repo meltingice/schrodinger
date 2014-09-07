@@ -1,10 +1,9 @@
 <% present(current_node) do |node_presenter| %>
-<div class="row">
+<div id="Breadcrumbs" class="row">
   <div class="small-12 columns">
     <ul class="breadcrumbs">
-      <li><a href="#">Home</a></li>
-      <% node_presenter.each_path_component do |path| %>
-        <li><a href="#"><%= path %></a></li>
+      <% node_presenter.each_path_component do |ancestor| %>
+        <li><a data-path="<%= ancestor.dropbox_path %>"><%= ancestor.name.blank? ? "Home" : ancestor.name %></a></li>
       <% end %>
     </ul>
   </div>

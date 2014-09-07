@@ -14,7 +14,7 @@ class NodePresenter < BasePresenter
   end
 
   def each_path_component(&block)
-    node.dropbox_path.split('/').each(&block)
+    (node.ancestors + [node]).each(&block)
   end
 
   def quota_percentage

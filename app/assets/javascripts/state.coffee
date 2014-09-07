@@ -1,9 +1,11 @@
 class State
   constructor: ->
     @bindClicks()
+    @loadGraph()
 
   bindClicks: ->
     $('body').on 'click', '.directory-item', @onFileClick
+    $('body').on 'click', '.breadcrumbs a', @onBreadcrumbClick
 
   currentPath: ->
     decodeURIComponent(
@@ -13,7 +15,12 @@ class State
   onFileClick: (e) =>
     $target = $(e.target)
     $target = $target.closest('.directory-item') unless $target.hasClass('directory-item')
+    return if $target.hasClass('file')
+    
     @setNewState $target
+
+  onBreadcrumbClick: (e) =>
+    @setNewState $(e.target)
 
   setNewState: ($ele) ->
     window.history.replaceState({}, 'Schrodinger', "/stats/#{@encodePath($ele.data('path'))}")
@@ -25,8 +32,13 @@ class State
     .join('/')
 
   loadNewState: ->
+    @loadBreadcrumbs()
     @loadSidebar()
     @loadFileList()
+
+  loadBreadcrumbs: ->
+    $.get("/nodes/breadcrumbs", path: @currentPath()).then (html) =>
+      $("#Breadcrumbs").replaceWith(html)
 
   loadSidebar: ->
     $.get("/nodes/sidebar", path: @currentPath()).then (html) =>
