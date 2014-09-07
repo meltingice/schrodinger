@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= content_for?(:title) ? yield(:title) : "Droplytics" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "Schrodinger" %></title>
 
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "application", debug: (Rails.env.development? || Rails.env.test?) %>
@@ -14,7 +14,6 @@
 </head>
 <body>
 
-<%= render partial: 'layouts/header' %>
 <%= yield %>
 
 <%= javascript_include_tag "application" %>
