@@ -3,7 +3,11 @@ class NodesController < ApplicationController
     render json: current_node
   end
 
-  def contents_for_path
-    render partial: 'nodes/contents_for_path'
+  def sidebar
+    render partial: 'stats/sidebar'
+  end
+
+  def file_list
+    render partial: 'stats/file_list'
   end
 end

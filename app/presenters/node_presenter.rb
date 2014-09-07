@@ -10,7 +10,7 @@ class NodePresenter < BasePresenter
   end
 
   def total_space
-    h.number_to_human_size node.deep_size
+    @total_space ||= h.number_to_human_size node.deep_size
   end
 
   def each_path_component(&block)

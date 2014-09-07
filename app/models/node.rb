@@ -1,5 +1,5 @@
 class Node < ActiveRecord::Base
-  has_ancestry
+  has_ancestry touch: true
 
   include FileFormats
 
@@ -52,7 +52,11 @@ class Node < ActiveRecord::Base
   end
 
   def deep_size
-    descendants.pluck(:size).inject(0) { |sum, size| sum + size }
+    return size if file?
+
+    Rails.cache.fetch [id, updated_at] do
+      descendants.files.pluck(:size).inject(0) { |sum, size| sum + size }
+    end
   end
 
   def categories_with_size(nodes = files)

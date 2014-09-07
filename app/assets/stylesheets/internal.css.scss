@@ -33,8 +33,12 @@
     width: 91%;
     padding-left: 0;
 
-    span {
+    > span {
       line-height: 28px;
+
+      > span {
+        color: $dark-grey;
+      }
     }
   }
 }

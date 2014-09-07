@@ -1,1 +1,2 @@
 #= require usage_chart
+

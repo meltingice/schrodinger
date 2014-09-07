@@ -11,6 +11,8 @@ DropboxAnalytics::Application.routes.draw do
     collection do
       get 'contents_for_path'
       get 'stats'
+      get 'sidebar'
+      get 'file_list'
     end
   end
 end
