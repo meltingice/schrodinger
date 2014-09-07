@@ -8,7 +8,6 @@
 
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag asset_path("application.css"), debug: (Rails.env.development? || Rails.env.test?) %>
-  <%= stylesheet_link_tag asset_path("pace.css") if current_user.present? %>
   <%= render partial: 'layouts/fonts' %>
 
   <%= javascript_include_tag asset_path("vendor/modernizr.js") %>
