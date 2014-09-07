@@ -81,6 +81,8 @@ class State
         plotOptions:
           pie:
             animation: false
+            dataLabels:
+              distance: 20
         tooltip:
           formatter: ->
             return "#{@point.name}: #{@y} bytes" if @y < 1024

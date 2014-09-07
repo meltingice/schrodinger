@@ -13,6 +13,10 @@ class NodePresenter < BasePresenter
     @total_space ||= h.number_to_human_size node.deep_size
   end
 
+  def percentage_space
+    h.number_to_percentage (node.deep_size/ node.root.deep_size.to_f * 100), precision: 2
+  end
+
   def each_path_component(&block)
     (node.ancestors + [node]).each(&block)
   end
@@ -23,11 +27,5 @@ class NodePresenter < BasePresenter
 
   def usage_width
     (node.deep_size.to_f / node.parent.deep_size) * 100
-  end
-
-  def stats_tip
-    %{
-      These stats include all content in this folder, including subfolders.
-    }.strip
   end
 end

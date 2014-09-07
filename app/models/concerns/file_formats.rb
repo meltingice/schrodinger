@@ -6,6 +6,7 @@ module FileFormats
       'psd' =>    'design',
       'ai' =>     'design',
       'sketch' => 'design',
+      'eps' =>    'design',
       'pdf' =>    'document',
       'doc' =>    'document',
       'docx' =>   'document',
