@@ -58,6 +58,11 @@ class State
       $("#UsageChart").highcharts
         title:
           text: 'Usage by Type'
+          align: 'left'
+          x: -10
+          style:
+            fontSize: '1.4375rem'
+            fontWeight: 'bold'
         tooltip:
           formatter: ->
             return "#{@point.name}: #{@y} bytes" if @y < 1024
