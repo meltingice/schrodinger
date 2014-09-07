@@ -1,6 +1,6 @@
 class DropboxController < ApplicationController
   def verify
-    respond_with text: params[:challenge]
+    render text: params[:challenge]
   end
 
   def webhook
