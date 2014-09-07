@@ -49,4 +49,22 @@
       }
     }
   }
+
+  .go-down {
+    text-align: center;
+    margin-top: -80px;
+    opacity: 0.5;
+    margin-bottom: 160px;
+  }
+
+  .more-info {
+    margin: 100px auto;
+  }
+
+  .footer {
+    p {
+      text-align: center;
+      color: $dark-grey;
+    }
+  }
 }
