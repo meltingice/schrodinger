@@ -4,6 +4,20 @@ class State
     @loadGraph()
     window.onpopstate = @loadNewState
 
+    @xhrPool = []
+    $.ajaxSetup
+      beforeSend: (xhr) =>
+        @xhrPool.push xhr
+      complete: (xhr) =>
+        index = @xhrPool.indexOf(xhr)
+        @xhrPool.splice(index, 1) if index > -1
+
+  abortPendingRequests: ->
+    for xhr in @xhrPool
+      xhr.abort() if xhr?
+      
+    @xhrPool = []
+
   bindClicks: ->
     $('body').on 'click', '.directory-item', @onFileClick
     $('body').on 'click', '.breadcrumbs a', @onBreadcrumbClick
@@ -33,6 +47,7 @@ class State
     .join('/')
 
   loadNewState: =>
+    @abortPendingRequests()
     $.when(@loadBreadcrumbs(), @loadSidebar(), @loadFileList()).then ->
       $(document).foundation()
 
@@ -63,6 +78,9 @@ class State
           style:
             fontSize: '1.4375rem'
             fontWeight: 'bold'
+        plotOptions:
+          pie:
+            animation: false
         tooltip:
           formatter: ->
             return "#{@point.name}: #{@y} bytes" if @y < 1024
