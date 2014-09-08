@@ -5,6 +5,10 @@
     margin-top: 200px;
   }
 
+  .progress .meter {
+    transition: width 1s ease-out;
+  }
+
   .contain-to-grid {
     height: 45px;
   }
@@ -38,7 +42,6 @@
       padding: 0;
       background-color: rgba($blue, 0.1);
       height: 100%;
-      transition: width
     }
 
     .filetype-icon {
