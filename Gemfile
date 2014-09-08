@@ -5,7 +5,6 @@ ruby '2.1.2'
 gem 'rails', '4.0.1'
 
 gem 'active_model_serializers'
-gem 'activerecord-import', '>= 0.4.0'
 gem 'ancestry'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'dotenv'
