@@ -23,7 +23,10 @@ class State
     @xhrPool = []
 
   bindClicks: ->
-    $('body').on 'click touchstart', '.directory-item', @onFileClick
+    @dragging = false
+
+    $('body').on 'click touchend', '.directory-item', @onFileClick
+    $('body').on 'touchmove', '.directory-item', => @dragging = true
     $('body').on 'click', '.breadcrumbs a', @onBreadcrumbClick
 
   currentPath: ->
@@ -32,6 +35,10 @@ class State
     )
 
   onFileClick: (e) =>
+    if @dragging
+      @dragging = false
+      return false
+      
     $target = $(e.target)
     $target = $target.closest('.directory-item') unless $target.hasClass('directory-item')
     return if $target.hasClass('file')
