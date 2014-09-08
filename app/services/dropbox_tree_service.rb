@@ -36,6 +36,7 @@ class DropboxTreeService
 
     reset_account! if data['reset']
 
+    records = []
     data['entries'].each do |entry|
       entry[0].gsub!(/^(\/)/, '')
       path, metadata = entry
@@ -43,9 +44,11 @@ class DropboxTreeService
       if metadata.nil?
         remove_node(path)
       else
-        process(path, metadata)
+        records << process(path, metadata)
       end
     end
+
+    Node.import records.compact
 
     if data['has_more']
       user.update_attribute :last_cursor, data['cursor']
@@ -82,14 +85,15 @@ class DropboxTreeService
   def process(path, metadata)
     existing_node = @root.child_at_path(path)
     if existing_node.present?
-      return process_existing_node(existing_node, metadata)
+      process_existing_node(existing_node, metadata)
+      return nil
     end
 
     # If the new entry includes parent folders that don't yet exist in your local state, 
     # create those parent folders in your local state.
     parent = @root.mkdir_p(parent_path_for(path))
 
-    Node.create!({
+    Node.new({
       dropbox_id: user.id,
       name: path_to_name(path),
       dropbox_path: path,

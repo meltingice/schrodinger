@@ -21,6 +21,8 @@ GEM
       activesupport (= 4.0.1)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
+    activerecord-import (0.5.0)
+      activerecord (>= 3.0)
     activesupport (4.0.1)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -172,6 +174,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  activerecord-import (>= 0.4.0)
   ancestry
   coffee-rails (~> 4.0.0)
   dotenv
