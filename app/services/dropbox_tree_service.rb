@@ -48,6 +48,7 @@ class DropboxTreeService
     end
 
     if data['has_more']
+      user.update_attribute :last_cursor, data['cursor']
       build_structure data['cursor']
     else
       user.update_attributes({
