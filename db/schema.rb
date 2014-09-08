@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907211854) do
+ActiveRecord::Schema.define(version: 20140908224152) do
 
   create_table "nodes", force: true do |t|
     t.integer  "dropbox_id"
     t.string   "ancestry"
     t.string   "name"
-    t.integer  "size"
+    t.integer  "size",         limit: 8
     t.string   "filetype"
     t.datetime "created_at"
     t.datetime "updated_at"
